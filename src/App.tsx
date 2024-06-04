@@ -4,6 +4,8 @@ export function App() {
   const [hueValue, setHueValue] = useState('180')
   const [saturationValue, setSaturationValue] = useState('50')
   const [lightnessValue, setLightnessValue] = useState('50')
+  const newBackgroundColor = `hsl(${hueValue},${saturationValue}%,${lightnessValue}%)`
+  const newStyle = { backgroundColor: newBackgroundColor }
 
   return (
     <div>
@@ -37,9 +39,11 @@ export function App() {
         onChange={(event) => setLightnessValue(event.target.value)}
       />
       <label htmlFor="lightness">Lightness</label>
+      <div style={newStyle}>TEST</div>
       <p>Hue value is {hueValue}</p>
       <p>Saturation value is {saturationValue}</p>
       <p>Lightness value is {lightnessValue}</p>
+      <p>Background color is {newBackgroundColor}</p>
     </div>
   )
 }
