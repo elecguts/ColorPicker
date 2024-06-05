@@ -1,9 +1,18 @@
 import React, { useState } from 'react'
+import { getRandomIntInclusive } from './MathRandom'
 
 export function App() {
-  const [hueValue, setHueValue] = useState('180')
-  const [saturationValue, setSaturationValue] = useState('50')
-  const [lightnessValue, setLightnessValue] = useState('50')
+  const randomStartingHue = getRandomIntInclusive(0, 360)
+  const randomStartingSaturation = getRandomIntInclusive(0, 100)
+  const randomStartingLightness = getRandomIntInclusive(0, 100)
+
+  const [hueValue, setHueValue] = useState(`${randomStartingHue}`)
+  const [saturationValue, setSaturationValue] = useState(
+    `${randomStartingSaturation}`
+  )
+  const [lightnessValue, setLightnessValue] = useState(
+    `${randomStartingLightness}`
+  )
   const newBackgroundColor = `hsl(${hueValue},${saturationValue}%,${lightnessValue}%)`
   const newStyle = { backgroundColor: newBackgroundColor }
 
@@ -15,7 +24,7 @@ export function App() {
         name="hue"
         min="0"
         max="360"
-        defaultValue="180"
+        defaultValue={randomStartingHue}
         onChange={(event) => setHueValue(event.target.value)}
       />
       <label htmlFor="hue">Hue</label>
@@ -25,7 +34,7 @@ export function App() {
         name="saturation"
         min="0"
         max="100"
-        defaultValue="50"
+        defaultValue={randomStartingSaturation}
         onChange={(event) => setSaturationValue(event.target.value)}
       />
       <label htmlFor="saturation">Saturation</label>
@@ -35,7 +44,7 @@ export function App() {
         name="lightness"
         min="0"
         max="100"
-        defaultValue="50"
+        defaultValue={randomStartingLightness}
         onChange={(event) => setLightnessValue(event.target.value)}
       />
       <label htmlFor="lightness">Lightness</label>
