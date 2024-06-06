@@ -16,6 +16,12 @@ export function App() {
   const newBackgroundColor = `hsl(${hueValue},${saturationValue}%,${lightnessValue}%)`
   const newStyle = { backgroundColor: newBackgroundColor }
 
+  function handleRandomColorButton() {
+    setHueValue(`${getRandomIntInclusive(0, 360)}`)
+    setSaturationValue(`${getRandomIntInclusive(0, 100)}`)
+    setLightnessValue(`${getRandomIntInclusive(0, 100)}`)
+  }
+
   return (
     <div>
       <input
@@ -24,6 +30,7 @@ export function App() {
         name="hue"
         min="0"
         max="360"
+        value={hueValue}
         defaultValue={randomStartingHue}
         onChange={(event) => setHueValue(event.target.value)}
       />
@@ -34,6 +41,7 @@ export function App() {
         name="saturation"
         min="0"
         max="100"
+        value={saturationValue}
         defaultValue={randomStartingSaturation}
         onChange={(event) => setSaturationValue(event.target.value)}
       />
@@ -44,6 +52,7 @@ export function App() {
         name="lightness"
         min="0"
         max="100"
+        value={lightnessValue}
         defaultValue={randomStartingLightness}
         onChange={(event) => setLightnessValue(event.target.value)}
       />
@@ -53,6 +62,7 @@ export function App() {
       <p>Saturation value is {saturationValue}</p>
       <p>Lightness value is {lightnessValue}</p>
       <p>Background color is {newBackgroundColor}</p>
+      <button onClick={handleRandomColorButton}>Random Color</button>
     </div>
   )
 }
